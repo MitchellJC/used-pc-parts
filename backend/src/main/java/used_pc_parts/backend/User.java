@@ -23,4 +23,20 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
 }
