@@ -1,9 +1,8 @@
 package used_pc_parts.backend;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -15,6 +14,9 @@ public class User {
   private String email;
   private String firstName;
   private String lastName;
+
+  @OneToMany(mappedBy = "sellerId")
+  private List<PCPartListing> listings;
 
   protected User() {}
 
