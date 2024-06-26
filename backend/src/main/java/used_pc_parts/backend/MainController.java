@@ -27,4 +27,9 @@ public class MainController {
     userRepository.save(user);
     return "Saved";
   }
+
+  @GetMapping(path = "/all")
+  public @ResponseBody Iterable<User> getAllUsers() {
+    return userRepository.findAll();
+  }
 }
