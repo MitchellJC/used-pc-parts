@@ -1,10 +1,6 @@
 package used_pc_parts.backend;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ForeignKey;
+import jakarta.persistence.*;
 
 /** Represents a PCPart that can be bought and sold. */
 @Entity
@@ -13,7 +9,10 @@ public class PCPartListing {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @ManyToOne
+  @JoinColumn(name = "id")
   private String sellerId;
+
   private String name;
   private String description;
   private String images;
