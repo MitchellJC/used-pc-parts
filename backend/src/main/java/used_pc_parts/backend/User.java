@@ -8,47 +8,47 @@ import jakarta.persistence.Id;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String email;
-    private String firstName;
-    private String lastName;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-    protected User() {
-    }
+  private String email;
+  private String firstName;
+  private String lastName;
 
-    public User(String email, String firstName, String lastName) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  protected User() {}
 
-    public Long getId() {
-        return this.id;
-    }
+  public User(String email, String firstName, String lastName) {
+    this.email = email;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-    public String getEmail() {
-        return this.email;
-    }
+  public Long getId() {
+    return this.id;
+  }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
+  public String getEmail() {
+    return this.email;
+  }
 
-    public String getLastName() {
-        return this.lastName;
-    }
+  public String getFirstName() {
+    return this.firstName;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getLastName() {
+    return this.lastName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 }
