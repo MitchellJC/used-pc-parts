@@ -62,6 +62,18 @@ public class MainController {
     return listingRepository.findAll();
   }
 
+  /**
+   * Add listing with given details to the repository.
+   *
+   * @param sellerId User id of the seller
+   * @param name Name of the part
+   * @param description Description of the part
+   * @param images List of image locations
+   * @param conditionString Condition of the part
+   * @param quantity Number of this part for sale
+   * @param price Price of this part
+   * @return Success message
+   */
   @PostMapping(path = "/addListing")
   public @ResponseBody String addNewListing(
       @RequestParam Long sellerId,

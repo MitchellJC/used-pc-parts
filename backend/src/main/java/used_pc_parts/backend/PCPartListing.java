@@ -42,6 +42,7 @@ public class PCPartListing {
     this.price = price;
   }
 
+  //  Getters
   public Long getId() {
     return id;
   }
@@ -74,6 +75,7 @@ public class PCPartListing {
     return price;
   }
 
+  // Setters
   public void setSeller(User seller) {
     this.seller = seller;
   }
