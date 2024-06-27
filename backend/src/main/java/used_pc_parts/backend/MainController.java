@@ -51,8 +51,17 @@ public class MainController {
     return userRepository.findAll();
   }
 
+  /**
+   * @return JSON or XML of all listing data.
+   */
+  @GetMapping(path = "/allListings")
+  public @ResponseBody Iterable<PCPartListing> getAllListings() {
+    return listingRepository.findAll();
+  }
+
   @PostMapping(path = "/addListing")
   public @ResponseBody String addNewListing(
+      @RequestParam User seller,
       @RequestParam String name,
       @RequestParam String description,
       @RequestParam String images,
@@ -60,6 +69,7 @@ public class MainController {
       @RequestParam int quantity,
       @RequestParam float price) {
     PCPartListing listing = new PCPartListing();
+    listing.setSeller(seller);
     listing.setName(name);
     listing.setDescription(description);
     listing.setImages(images);

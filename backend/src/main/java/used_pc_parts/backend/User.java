@@ -15,7 +15,7 @@ public class User {
   private String firstName;
   private String lastName;
 
-  @OneToMany(mappedBy = "sellerId")
+  @OneToMany(mappedBy = "seller")
   private List<PCPartListing> listings;
 
   protected User() {}

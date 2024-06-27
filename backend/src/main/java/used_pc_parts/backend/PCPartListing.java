@@ -10,8 +10,8 @@ public class PCPartListing {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "id")
-  private Long sellerId;
+  @JoinColumn(name = "sellerId")
+  private User seller;
 
   private String name;
   private String description;
@@ -24,14 +24,14 @@ public class PCPartListing {
   protected PCPartListing() {}
 
   public PCPartListing(
-      Long sellerId,
+      User seller,
       String name,
       String description,
       String images,
       PCPartCondition condition,
       int quantity,
       float price) {
-    this.sellerId = sellerId;
+    this.seller = seller;
     this.name = name;
     this.description = description;
     this.images = images;
@@ -44,8 +44,8 @@ public class PCPartListing {
     return id;
   }
 
-  public Long getSellerId() {
-    return sellerId;
+  public User getSeller() {
+    return seller;
   }
 
   public String getName() {
@@ -70,6 +70,10 @@ public class PCPartListing {
 
   public float getPrice() {
     return price;
+  }
+
+  public void setSeller(User seller) {
+    this.seller = seller;
   }
 
   public void setName(String name) {
