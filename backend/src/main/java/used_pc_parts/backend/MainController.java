@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
   @Autowired private UserRepository userRepository;
+  @Autowired private ListingRepository listingRepository;
 
   /**
    * Greeting request that returns simple test greeting response.
@@ -31,7 +32,7 @@ public class MainController {
    * @param email The email of the user.
    * @return Success message.
    */
-  @PostMapping(path = "/add")
+  @PostMapping(path = "/addUser")
   public @ResponseBody String addNewUser(
       @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email) {
     User user = new User();
@@ -48,5 +49,24 @@ public class MainController {
   @GetMapping(path = "/all")
   public @ResponseBody Iterable<User> getAllUsers() {
     return userRepository.findAll();
+  }
+
+  @PostMapping(path = "/addListing")
+  public @ResponseBody String addNewListing(
+      @RequestParam String name,
+      @RequestParam String description,
+      @RequestParam String images,
+      @RequestParam PCPartCondition condition,
+      @RequestParam int quantity,
+      @RequestParam float price) {
+    PCPartListing listing = new PCPartListing();
+    listing.setName(name);
+    listing.setDescription(description);
+    listing.setImages(images);
+    listing.setCondition(condition);
+    listing.setQuantity(quantity);
+    listing.setPrice(price);
+    listingRepository.save(listing);
+    return "Saved";
   }
 }

@@ -11,7 +11,7 @@ public class PCPartListing {
 
   @ManyToOne
   @JoinColumn(name = "id")
-  private String sellerId;
+  private Long sellerId;
 
   private String name;
   private String description;
@@ -24,7 +24,7 @@ public class PCPartListing {
   protected PCPartListing() {}
 
   public PCPartListing(
-      String sellerId,
+      Long sellerId,
       String name,
       String description,
       String images,
@@ -44,7 +44,7 @@ public class PCPartListing {
     return id;
   }
 
-  public String getSellerId() {
+  public Long getSellerId() {
     return sellerId;
   }
 
