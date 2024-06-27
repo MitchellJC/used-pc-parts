@@ -1,12 +1,16 @@
 package used_pc_parts.backend;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
 
 /** The main controller for the backend. */
 @Controller
@@ -61,15 +65,22 @@ public class MainController {
 
   @PostMapping(path = "/addListing")
   public @ResponseBody String addNewListing(
-      @RequestParam User seller,
+      @RequestParam Long sellerId,
       @RequestParam String name,
       @RequestParam String description,
       @RequestParam String images,
-      @RequestParam PCPartCondition condition,
+      @RequestParam String conditionString,
       @RequestParam int quantity,
       @RequestParam float price) {
     PCPartListing listing = new PCPartListing();
-    listing.setSeller(seller);
+    Optional<User> seller = userRepository.findById(sellerId);
+    PCPartCondition condition = PCPartCondition.valueOf(conditionString);
+
+    if (seller.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist.");
+    }
+
+    listing.setSeller(seller.get());
     listing.setName(name);
     listing.setDescription(description);
     listing.setImages(images);
