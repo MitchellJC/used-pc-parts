@@ -10,13 +10,15 @@ public class PCPartListing {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "sellerId")
+  @JoinColumn(name = "seller_id")
   private User seller;
 
   private String name;
   private String description;
   private String images;
-  private PCPartCondition condition;
+
+  @Enumerated(EnumType.STRING)
+  private PCPartCondition partCondition;
 
   private int quantity;
   private float price;
@@ -35,7 +37,7 @@ public class PCPartListing {
     this.name = name;
     this.description = description;
     this.images = images;
-    this.condition = condition;
+    this.partCondition = condition;
     this.quantity = quantity;
     this.price = price;
   }
@@ -60,8 +62,8 @@ public class PCPartListing {
     return images;
   }
 
-  public PCPartCondition getCondition() {
-    return condition;
+  public PCPartCondition getPartCondition() {
+    return partCondition;
   }
 
   public int getQuantity() {
@@ -88,8 +90,8 @@ public class PCPartListing {
     this.images = images;
   }
 
-  public void setCondition(PCPartCondition condition) {
-    this.condition = condition;
+  public void setPartCondition(PCPartCondition condition) {
+    this.partCondition = condition;
   }
 
   public void setQuantity(int quantity) {

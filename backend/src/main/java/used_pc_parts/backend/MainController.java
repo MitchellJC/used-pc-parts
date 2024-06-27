@@ -84,7 +84,7 @@ public class MainController {
     listing.setName(name);
     listing.setDescription(description);
     listing.setImages(images);
-    listing.setCondition(condition);
+    listing.setPartCondition(condition);
     listing.setQuantity(quantity);
     listing.setPrice(price);
     listingRepository.save(listing);
