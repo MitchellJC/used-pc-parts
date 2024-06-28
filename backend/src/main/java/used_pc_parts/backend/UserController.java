@@ -22,6 +22,11 @@ public class UserController {
     return userRepository.findAll();
   }
 
+  @GetMapping(path = "/register")
+  public String register() {
+    return "register";
+  }
+
   /**
    * Adds user with the given details to the repository.
    *
