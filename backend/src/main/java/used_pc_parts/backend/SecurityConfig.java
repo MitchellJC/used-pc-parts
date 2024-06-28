@@ -23,7 +23,7 @@ public class SecurityConfig {
                   .requestMatchers("/", "/home", "/greeting", "/user/register", "/user/**")
                   .permitAll();
             })
-        .formLogin((form) -> form.loginPage("/login").permitAll())
+        .formLogin((form) -> form.loginPage("/user/login").permitAll())
         .logout(LogoutConfigurer::permitAll);
     return http.build();
   }
