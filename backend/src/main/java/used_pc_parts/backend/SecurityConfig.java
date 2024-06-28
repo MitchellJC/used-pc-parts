@@ -16,7 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests((requests) -> requests.requestMatchers("/", "/home", "/greeting"))
+    http.authorizeHttpRequests(
+            (requests) -> requests.requestMatchers("/", "/home", "/greeting").permitAll())
         .formLogin((form) -> form.loginPage("/login").permitAll())
         .logout(LogoutConfigurer::permitAll);
     return http.build();
