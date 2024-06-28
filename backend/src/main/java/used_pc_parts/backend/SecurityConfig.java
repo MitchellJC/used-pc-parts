@@ -2,6 +2,7 @@ package used_pc_parts.backend;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
@@ -17,9 +18,26 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(
-            (requests) -> requests.requestMatchers("/", "/home", "/greeting").permitAll())
+            (requests) -> {
+              requests
+                  .requestMatchers("/", "/home", "/all", "/greeting", "/user/register")
+                  .permitAll();
+            })
         .formLogin((form) -> form.loginPage("/login").permitAll())
         .logout(LogoutConfigurer::permitAll);
     return http.build();
+  }
+
+  @Bean
+  public UserDetailsService userDetailsService() {
+    UserDetails user =
+        // TODO Should not use default password encoder in prod
+        User.withDefaultPasswordEncoder()
+            .username("user")
+            .password("password")
+            .roles("USER")
+            .build();
+
+    return new InMemoryUserDetailsManager(user);
   }
 }

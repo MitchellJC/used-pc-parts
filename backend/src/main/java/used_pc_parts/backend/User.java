@@ -14,6 +14,8 @@ public class User {
   private String email;
   private String firstName;
   private String lastName;
+  private String salt;
+  private String hashedPassword;
 
   @OneToMany(mappedBy = "seller")
   private List<PCPartListing> listings;
@@ -42,6 +44,14 @@ public class User {
     return this.lastName;
   }
 
+  public String getSalt() {
+    return salt;
+  }
+
+  public String getHashedPassword() {
+    return hashedPassword;
+  }
+
   public void setEmail(String email) {
     this.email = email;
   }
@@ -52,5 +62,13 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public void setSalt(String salt) {
+    this.salt = salt;
+  }
+
+  public void setHashedPassword(String hashedPassword) {
+    this.hashedPassword = hashedPassword;
   }
 }
