@@ -47,14 +47,6 @@ public class MainController {
   }
 
   /**
-   * @return JSON or XML of all user data.
-   */
-  @GetMapping(path = "/all")
-  public @ResponseBody Iterable<User> getAllUsers() {
-    return userRepository.findAll();
-  }
-
-  /**
    * @return JSON or XML of all listing data.
    */
   @GetMapping(path = "/allListings")
