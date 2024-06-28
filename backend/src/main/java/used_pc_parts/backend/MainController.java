@@ -20,33 +20,9 @@ public class MainController {
   @Autowired private UserRepository userRepository;
   @Autowired private ListingRepository listingRepository;
 
-  /**
-   * Greeting request that returns simple test greeting response.
-   *
-   * @return Greeting message
-   */
   @RequestMapping(path = "/greeting")
   public @ResponseBody String greeting() {
     return "Hello world!";
-  }
-
-  /**
-   * Adds user with the given details to the repository.
-   *
-   * @param firstName The first name of the user.
-   * @param lastName The last name of the user.
-   * @param email The email of the user.
-   * @return Success message.
-   */
-  @PostMapping(path = "/addUser")
-  public @ResponseBody String addNewUser(
-      @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email) {
-    User user = new User();
-    user.setFirstName(firstName);
-    user.setLastName(lastName);
-    user.setEmail(email);
-    userRepository.save(user);
-    return "Saved";
   }
 
   /**

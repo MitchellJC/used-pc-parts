@@ -22,6 +22,9 @@ public class UserController {
     return userRepository.findAll();
   }
 
+  /**
+   * @return View name for registration page.
+   */
   @GetMapping(path = "/register")
   public String register() {
     return "register";
