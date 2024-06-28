@@ -56,7 +56,7 @@ public class UserController {
     user.setSalt(salt);
     user.setHashedPassword(hashedPassword);
     userRepository.save(user);
-    return "Saved";
+    return "Registration was successful.";
   }
 
   private String generateSalt() {
