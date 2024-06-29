@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Create listing</title>
+</head>
+<body>
+<form th:action="@{/listing/create}" method="post">
+    <div><label> Name : <input type="text" name="name"/> </label></div>
+    <div><label> Description : <input type="text" name="description"/> </label></div>
+    <div><label> Images : <input type="text" name="images"/> </label></div>
+    <div>
+        <div>Condition :</div>
+        <div><label>Used <input type="radio" name="condition" value="USED"></label></div>
+        <div><label>Like new <input type="radio" name="condition" value="LIKE_NEW"></label></div>
+        <div><label>Brand new <input type="radio" name="condition" value="BRAND_NEW"></label></div>
+    </div>
+    <div><input type="submit" value="Create"/></div>
+</form>
+</body>
+</html>
