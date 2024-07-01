@@ -30,9 +30,20 @@ public class SecurityConfig {
     http.authorizeHttpRequests(
             (requests) -> {
               requests
-                  .requestMatchers("/", "/home", "/user/register", "/user/all")
+                  // Root pages
+                  .requestMatchers("/", "/home", "logout")
                   .permitAll()
-                  .anyRequest()
+                  .requestMatchers("/greeting")
+                  .authenticated()
+
+                  // User resources
+                  .requestMatchers("/user/register", "/user/logout")
+                  .permitAll()
+                  .requestMatchers("/user/all", "/user/remove")
+                  .hasAuthority("ADMIN")
+
+                  // Listing resources
+                  .requestMatchers("/listing/create")
                   .authenticated();
             })
         .formLogin((form) -> form.loginPage("/user/login").permitAll())
