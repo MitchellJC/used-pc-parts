@@ -1,9 +1,5 @@
 package used_pc_parts.backend;
 
-import java.util.Base64;
-import java.util.Base64.Encoder;
-import java.security.SecureRandom;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,16 +56,4 @@ public class UserController {
     userRepository.deleteById(id);
     return "Success";
   }
-
-  //  private String generateSalt() {
-  //    String salt;
-  //    SecureRandom random = new SecureRandom();
-  //    Encoder encoder = Base64.getUrlEncoder().withoutPadding();
-  //    final int saltNumBytes = 10;
-  //    byte[] saltBytes = new byte[saltNumBytes];
-  //
-  //    random.nextBytes(saltBytes);
-  //    salt = encoder.encodeToString(saltBytes);
-  //    return salt;
-  //  }
 }
