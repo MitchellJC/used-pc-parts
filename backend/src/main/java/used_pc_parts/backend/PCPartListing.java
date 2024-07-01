@@ -18,6 +18,9 @@ public class PCPartListing {
   private String images;
 
   @Enumerated(EnumType.STRING)
+  private PCPartCategory category;
+
+  @Enumerated(EnumType.STRING)
   private PCPartCondition partCondition;
 
   private int quantity;
@@ -31,12 +34,14 @@ public class PCPartListing {
       String description,
       String images,
       PCPartCondition condition,
+      PCPartCategory category,
       int quantity,
       float price) {
     this.seller = seller;
     this.name = name;
     this.description = description;
     this.images = images;
+    this.category = category;
     this.partCondition = condition;
     this.quantity = quantity;
     this.price = price;
@@ -61,6 +66,10 @@ public class PCPartListing {
 
   public String getImages() {
     return images;
+  }
+
+  public PCPartCategory getCategory() {
+    return category;
   }
 
   public PCPartCondition getPartCondition() {
@@ -90,6 +99,10 @@ public class PCPartListing {
 
   public void setImages(String images) {
     this.images = images;
+  }
+
+  public void setCategory(PCPartCategory category) {
+    this.category = category;
   }
 
   public void setPartCondition(PCPartCondition condition) {
