@@ -47,14 +47,10 @@ public class UserController {
     User user = new User();
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    String salt = generateSalt();
-    String hashedPassword = encoder.encode(password);
-
     user.setFirstName(firstName);
     user.setLastName(lastName);
     user.setEmail(email);
-    //    user.setSalt(salt);
-    user.setHashedPassword(hashedPassword);
+    user.setHashedPassword(encoder.encode(password));
     userRepository.save(user);
     return "Registration was successful.";
   }
@@ -65,15 +61,15 @@ public class UserController {
     return "Success";
   }
 
-  private String generateSalt() {
-    String salt;
-    SecureRandom random = new SecureRandom();
-    Encoder encoder = Base64.getUrlEncoder().withoutPadding();
-    final int saltNumBytes = 10;
-    byte[] saltBytes = new byte[saltNumBytes];
-
-    random.nextBytes(saltBytes);
-    salt = encoder.encodeToString(saltBytes);
-    return salt;
-  }
+  //  private String generateSalt() {
+  //    String salt;
+  //    SecureRandom random = new SecureRandom();
+  //    Encoder encoder = Base64.getUrlEncoder().withoutPadding();
+  //    final int saltNumBytes = 10;
+  //    byte[] saltBytes = new byte[saltNumBytes];
+  //
+  //    random.nextBytes(saltBytes);
+  //    salt = encoder.encodeToString(saltBytes);
+  //    return salt;
+  //  }
 }
