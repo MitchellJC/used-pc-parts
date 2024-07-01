@@ -48,12 +48,12 @@ public class UserController {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     String salt = generateSalt();
-    String hashedPassword = encoder.encode(salt + password);
+    String hashedPassword = encoder.encode(password);
 
     user.setFirstName(firstName);
     user.setLastName(lastName);
     user.setEmail(email);
-    user.setSalt(salt);
+    //    user.setSalt(salt);
     user.setHashedPassword(hashedPassword);
     userRepository.save(user);
     return "Registration was successful.";

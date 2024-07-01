@@ -49,17 +49,4 @@ public class SecurityConfig {
   public UserDetailsService userDetailsService() {
     return new CustomUserDetailsService();
   }
-
-  //  @Bean
-  //  public UserDetailsService userDetailsService() {
-  //    UserDetails user =
-  //        // TODO Should not use default password encoder in prod
-  //        User.withDefaultPasswordEncoder()
-  //            .username("mail")
-  //            .password("password")
-  //            .roles("USER")
-  //            .build();
-  //
-  //    return new InMemoryUserDetailsManager(user);
-  //  }
 }
