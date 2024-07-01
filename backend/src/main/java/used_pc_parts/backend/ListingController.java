@@ -1,72 +1,74 @@
 package used_pc_parts.backend;
 
-import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.Base64.Encoder;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.Authentication;
 
 @Controller
-@RequestMapping(path = "listing")
+@RequestMapping(path = "/listing")
 public class ListingController {
   @Autowired private UserRepository userRepository;
+  @Autowired private ListingRepository listingRepository;
 
   /**
-   * @return JSON or XML of all user data.
+   * @return JSON or XML of all listing data.
    */
   @GetMapping(path = "/all")
-  public @ResponseBody Iterable<User> getAllUsers() {
-    return userRepository.findAll();
+  public @ResponseBody Iterable<PCPartListing> getAllListings() {
+    return listingRepository.findAll();
+  }
+
+  @GetMapping(path = "/create")
+  public String getCreateListingView() {
+    return "create-listing";
   }
 
   /**
-   * @return View name for registration page.
-   */
-  @GetMapping(path = "/register")
-  public String register() {
-    return "register";
-  }
-
-  /**
-   * Adds user with the given details to the repository.
+   * Add listing with given details to the repository.
    *
-   * @param firstName The first name of the user.
-   * @param lastName The last name of the user.
-   * @param email The email of the user.
-   * @return Success message.
+   * @param name Name of the part
+   * @param description Description of the part
+   * @param images List of image locations
+   * @param categoryString Category of the part
+   * @param conditionString Condition of the part
+   * @param quantity Number of this part for sale
+   * @param price Price of this part
+   * @return Success message
    */
-  @PostMapping(path = "/register")
-  public @ResponseBody String register(
-      @RequestParam String firstName,
-      @RequestParam String lastName,
-      @RequestParam String email,
-      @RequestParam String password) {
-    User user = new User();
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+  @PostMapping(path = "/create")
+  public @ResponseBody String addNewListing(
+      @RequestParam String name,
+      @RequestParam String description,
+      @RequestParam String images,
+      @RequestParam String categoryString,
+      @RequestParam String conditionString,
+      @RequestParam int quantity,
+      @RequestParam float price) {
+    PCPartListing listing = new PCPartListing();
+    PCPartCondition condition = PCPartCondition.valueOf(conditionString);
+    SecurityContext context = SecurityContextHolder.getContext();
+    Authentication authentication = context.getAuthentication();
+    Optional<User> seller = userRepository.findByEmail(authentication.getName());
 
-    String salt = generateSalt();
-    String hashedPassword = encoder.encode(salt + password);
+    if (seller.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist.");
+    }
 
-    user.setFirstName(firstName);
-    user.setLastName(lastName);
-    user.setEmail(email);
-    user.setSalt(salt);
-    user.setHashedPassword(hashedPassword);
-    userRepository.save(user);
-    return "Registration was successful.";
-  }
-
-  private String generateSalt() {
-    String salt;
-    SecureRandom random = new SecureRandom();
-    Encoder encoder = Base64.getUrlEncoder().withoutPadding();
-    final int saltNumBytes = 10;
-    byte[] saltBytes = new byte[saltNumBytes];
-
-    random.nextBytes(saltBytes);
-    salt = encoder.encodeToString(saltBytes);
-    return salt;
+    listing.setSeller(seller.get());
+    listing.setName(name);
+    listing.setDescription(description);
+    listing.setImages(images);
+    listing.setPartCondition(condition);
+    listing.setQuantity(quantity);
+    listing.setPrice(price);
+    listingRepository.save(listing);
+    return "Saved";
   }
 }

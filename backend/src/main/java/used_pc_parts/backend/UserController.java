@@ -59,6 +59,12 @@ public class UserController {
     return "Registration was successful.";
   }
 
+  @GetMapping(path = "/remove")
+  public @ResponseBody String removeUser(@RequestParam Long id) {
+    userRepository.deleteById(id);
+    return "Success";
+  }
+
   private String generateSalt() {
     String salt;
     SecureRandom random = new SecureRandom();

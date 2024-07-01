@@ -37,7 +37,7 @@ public class SecurityConfig {
     UserDetails user =
         // TODO Should not use default password encoder in prod
         User.withDefaultPasswordEncoder()
-            .username("user")
+            .username("mail")
             .password("password")
             .roles("USER")
             .build();

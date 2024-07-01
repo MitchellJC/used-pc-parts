@@ -10,20 +10,22 @@
     <div><label> Images : <input type="text" name="images"/> </label></div>
     <div>
         <div>Category :</div>
-        <div><label>Case <input type="radio" name="category" value="CASE"></label></div>
-        <div><label>Motherboard <input type="radio" name="category" value="MOTHERBOARD"></label></div>
-        <div><label>Power supply <input type="radio" name="category" value="POWER_SUPPLY"></label></div>
-        <div><label>CPU <input type="radio" name="category" value="CPU"></label></div>
-        <div><label>GPU <input type="radio" name="category" value="GPU"></label></div>
-        <div><label>RAM <input type="radio" name="category" value="RAM"></label></div>
-        <div><label>Storage <input type="radio" name="category" value="STORAGE"></label></div>
+        <div><label>Case <input type="radio" name="categoryString" value="CASE"></label></div>
+        <div><label>Motherboard <input type="radio" name="categoryString" value="MOTHERBOARD"></label></div>
+        <div><label>Power supply <input type="radio" name="categoryString" value="POWER_SUPPLY"></label></div>
+        <div><label>CPU <input type="radio" name="categoryString" value="CPU"></label></div>
+        <div><label>GPU <input type="radio" name="categoryString" value="GPU"></label></div>
+        <div><label>RAM <input type="radio" name="categoryString" value="RAM"></label></div>
+        <div><label>Storage <input type="radio" name="categoryString" value="STORAGE"></label></div>
     </div>
     <div>
         <div>Condition :</div>
-        <div><label>Used <input type="radio" name="condition" value="USED"></label></div>
-        <div><label>Like new <input type="radio" name="condition" value="LIKE_NEW"></label></div>
-        <div><label>Brand new <input type="radio" name="condition" value="BRAND_NEW"></label></div>
+        <div><label>Used <input type="radio" name="conditionString" value="USED"></label></div>
+        <div><label>Like new <input type="radio" name="conditionString" value="LIKE_NEW"></label></div>
+        <div><label>Brand new <input type="radio" name="conditionString" value="BRAND_NEW"></label></div>
     </div>
+    <div><label> Quantity : <input type="number" name="quantity" step="1"/> </label></div>
+    <div><label> Price : <input type="number" name="price" step="0.01"/> </label></div>
     <div><input type="submit" value="Create"/></div>
 </form>
 </body>
