@@ -2,78 +2,38 @@ package used_pc_parts.backend;
 
 import jakarta.persistence.*;
 
-/** Represents a PCPart that can be bought and sold. */
 @Entity
 public class PCPartListing {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  @Id private long id;
+
+  @OneToOne(optional = false, mappedBy = "")
+  @MapsId
+  @JoinColumn(name = "id")
+  private PCPart pcPart;
 
   @ManyToOne
   @JoinColumn(name = "seller_id")
   private User seller;
-
-  private String name;
-  private String description;
-  private String images;
-
-  @Enumerated(EnumType.STRING)
-  private PCPartCategory category;
-
-  @Enumerated(EnumType.STRING)
-  private PCPartCondition partCondition;
 
   private int quantity;
   private float price;
 
   protected PCPartListing() {}
 
-  public PCPartListing(
-      User seller,
-      String name,
-      String description,
-      String images,
-      PCPartCondition condition,
-      PCPartCategory category,
-      int quantity,
-      float price) {
+  public PCPartListing(PCPart pcPart, User seller, int quantity, float price) {
+    this.pcPart = pcPart;
     this.seller = seller;
-    this.name = name;
-    this.description = description;
-    this.images = images;
-    this.category = category;
-    this.partCondition = condition;
     this.quantity = quantity;
     this.price = price;
   }
 
   //  Getters
-  public Long getId() {
-    return id;
+  public PCPart getPcPart() {
+    return pcPart;
   }
 
   public User getSeller() {
     return seller;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public String getImages() {
-    return images;
-  }
-
-  public PCPartCategory getCategory() {
-    return category;
-  }
-
-  public PCPartCondition getPartCondition() {
-    return partCondition;
   }
 
   public int getQuantity() {
@@ -87,26 +47,6 @@ public class PCPartListing {
   // Setters
   public void setSeller(User seller) {
     this.seller = seller;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setImages(String images) {
-    this.images = images;
-  }
-
-  public void setCategory(PCPartCategory category) {
-    this.category = category;
-  }
-
-  public void setPartCondition(PCPartCondition condition) {
-    this.partCondition = condition;
   }
 
   public void setQuantity(int quantity) {

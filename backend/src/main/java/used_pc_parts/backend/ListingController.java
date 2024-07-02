@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 public class ListingController {
   @Autowired private UserRepository userRepository;
   @Autowired private ListingRepository listingRepository;
+  @Autowired private PCPartRepository partRepository;
 
   /**
    * @return JSON or XML of all listing data.
@@ -52,6 +53,7 @@ public class ListingController {
       @RequestParam int quantity,
       @RequestParam float price)
       throws ResponseStatusException {
+    PCPart pcPart = new PCPart();
     PCPartListing listing = new PCPartListing();
     PCPartCondition condition = PCPartCondition.valueOf(conditionString);
     SecurityContext context = SecurityContextHolder.getContext();
@@ -62,11 +64,12 @@ public class ListingController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist.");
     }
 
+    pcPart.setName(name);
+    pcPart.setDescription(description);
+    pcPart.setImages(images);
+    pcPart.setPartCondition(condition);
+
     listing.setSeller(seller.get());
-    listing.setName(name);
-    listing.setDescription(description);
-    listing.setImages(images);
-    listing.setPartCondition(condition);
     listing.setQuantity(quantity);
     listing.setPrice(price);
     listingRepository.save(listing);
