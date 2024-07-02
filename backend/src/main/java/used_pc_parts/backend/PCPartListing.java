@@ -1,6 +1,10 @@
 package used_pc_parts.backend;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Entity
 public class PCPartListing {
@@ -15,19 +19,49 @@ public class PCPartListing {
   @JoinColumn(name = "seller_id")
   private User seller;
 
+  @CreationTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "creation_date")
+  private Date creationDate;
+
+  @UpdateTimestamp
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "last_update_date")
+  private Date lastUpdateDate;
+
   private int quantity;
   private float price;
 
   protected PCPartListing() {}
 
-  public PCPartListing(PCPart pcPart, User seller, int quantity, float price) {
+  public PCPartListing(
+      PCPart pcPart,
+      User seller,
+      Date creationDate,
+      Date lastUpdateDate,
+      int quantity,
+      float price) {
     this.pcPart = pcPart;
     this.seller = seller;
+    this.creationDate = creationDate;
+    this.lastUpdateDate = lastUpdateDate;
     this.quantity = quantity;
     this.price = price;
   }
 
   //  Getters
+  public long getId() {
+    return id;
+  }
+
+  public Date getCreationDate() {
+    return creationDate;
+  }
+
+  public Date getLastUpdateDate() {
+    return lastUpdateDate;
+  }
+
   public PCPart getPcPart() {
     return pcPart;
   }
