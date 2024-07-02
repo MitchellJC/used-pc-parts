@@ -27,12 +27,19 @@ public class ListingController {
     return listingRepository.findAll();
   }
 
+  /**
+   * @param category category of interest.
+   * @return All listings from category of interest.
+   */
   @GetMapping(path = "/all/category")
   public @ResponseBody Iterable<PCPartListing> allFromCategory(@RequestParam String category) {
     List<PCPart> categoryParts = partRepository.findByCategory(PCPartCategory.valueOf(category));
     return listingRepository.findByPcPartInOrderByCreationDateDesc(categoryParts);
   }
 
+  /**
+   * @return View for creating a listing.
+   */
   @GetMapping(path = "/create")
   public String getCreateListingView() {
     return "create-listing";
@@ -71,6 +78,7 @@ public class ListingController {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist.");
     }
 
+    // Create PCPart object
     pcPart.setName(name);
     pcPart.setDescription(description);
     pcPart.setImages(images);
@@ -78,6 +86,7 @@ public class ListingController {
     pcPart.setCategory(PCPartCategory.valueOf(categoryString));
     partRepository.save(pcPart);
 
+    // Create listing object
     listing.setSeller(seller.get());
     listing.setQuantity(quantity);
     listing.setPrice(price);
@@ -86,22 +95,35 @@ public class ListingController {
     return "Saved";
   }
 
+  /**
+   * @return View for buy page.
+   */
   @GetMapping(path = "/buy")
   public String buyListing() {
     return "buy-listing";
   }
 
+  /**
+   * Handles buying a listing.
+   *
+   * @param listingId id of the listing to buy.
+   * @param quantity the quantity of the part in listing to buy.
+   * @return success message.
+   * @throws ResponseStatusException if listing does not exist or quantity is not available.
+   */
   @PostMapping(path = "/buy")
   public @ResponseBody String buyListing(@RequestParam Long listingId, @RequestParam int quantity)
       throws ResponseStatusException {
     PCPartListing listing;
     Optional<PCPartListing> optionalListing = listingRepository.findById(listingId);
 
+    // Check listing exists
     if (optionalListing.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Listing does not exist.");
     }
     listing = optionalListing.get();
 
+    // Check quantity is available
     if (listing.getQuantity() < quantity) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "Quantity larger than available quantity.");
