@@ -71,4 +71,14 @@ public class ListingController {
     listingRepository.save(listing);
     return "Saved";
   }
+
+  @GetMapping(path = "/buy")
+  public String buyListing() {
+    return "buy-listing";
+  }
+
+  @PostMapping(path = "/buy")
+  public @ResponseBody String buyListing(@RequestParam Long listingId, @RequestParam int quantity) {
+    return "Success";
+  }
 }

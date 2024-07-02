@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Buy listing</title>
+</head>
+<body>
+<form th:action="@{/listing/buy}" method="post">
+    <div><label> Listing id : <input type="number" name="listingId" min="0"/> </label></div>
+    <div><label> Quantity : <input type="number" name="quantity" min="0"/> </label></div>
+    <div><input type="submit" value="Buy"/></div>
+</form>
+</body>
+</html>
