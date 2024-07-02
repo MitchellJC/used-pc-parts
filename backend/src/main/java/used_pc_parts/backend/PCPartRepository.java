@@ -1,6 +1,5 @@
 package used_pc_parts.backend;
 
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
