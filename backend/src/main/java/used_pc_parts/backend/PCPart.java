@@ -17,7 +17,7 @@ public class PCPart {
   private PCPartCategory category;
 
   @Enumerated(EnumType.STRING)
-  private PCPartCondition condition;
+  private PCPartCondition partCondition;
 
   @OneToOne(mappedBy = "pcPart", cascade = CascadeType.ALL)
   private PCPartListing listing;
@@ -25,11 +25,11 @@ public class PCPart {
   protected PCPart() {}
 
   public PCPart(
-      String name, String description, PCPartCategory category, PCPartCondition condition) {
+      String name, String description, PCPartCategory category, PCPartCondition partCondition) {
     this.name = name;
     this.description = description;
     this.category = category;
-    this.condition = condition;
+    this.partCondition = partCondition;
   }
 
   public String getName() {
@@ -50,7 +50,7 @@ public class PCPart {
   }
 
   public PCPartCondition getPartCondition() {
-    return condition;
+    return partCondition;
   }
 
   // Setters
@@ -70,7 +70,7 @@ public class PCPart {
     this.category = category;
   }
 
-  public void setPartCondition(PCPartCondition condition) {
-    this.condition = condition;
+  public void setPartCondition(PCPartCondition partCondition) {
+    this.partCondition = partCondition;
   }
 }

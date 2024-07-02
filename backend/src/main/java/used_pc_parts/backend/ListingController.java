@@ -68,10 +68,13 @@ public class ListingController {
     pcPart.setDescription(description);
     pcPart.setImages(images);
     pcPart.setPartCondition(condition);
+    pcPart.setCategory(PCPartCategory.valueOf(categoryString));
+    partRepository.save(pcPart);
 
     listing.setSeller(seller.get());
     listing.setQuantity(quantity);
     listing.setPrice(price);
+    listing.setPcPart(pcPart);
     listingRepository.save(listing);
     return "Saved";
   }

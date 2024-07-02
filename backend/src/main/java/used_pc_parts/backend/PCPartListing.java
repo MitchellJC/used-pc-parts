@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 public class PCPartListing {
   @Id private long id;
 
-  @OneToOne(optional = false, mappedBy = "")
   @MapsId
+  @OneToOne
   @JoinColumn(name = "id")
   private PCPart pcPart;
 
@@ -45,6 +45,10 @@ public class PCPartListing {
   }
 
   // Setters
+  public void setPcPart(PCPart pcPart) {
+    this.pcPart = pcPart;
+  }
+
   public void setSeller(User seller) {
     this.seller = seller;
   }

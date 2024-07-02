@@ -1,7 +1,7 @@
 package used_pc_parts.backend;
 
 public enum PCPartCategory {
-  CASE,
+  PC_CASE,
   MOTHERBOARD,
   POWER_SUPPLY,
   CPU,
