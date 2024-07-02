@@ -50,7 +50,8 @@ public class ListingController {
       @RequestParam String categoryString,
       @RequestParam String conditionString,
       @RequestParam int quantity,
-      @RequestParam float price) {
+      @RequestParam float price)
+      throws ResponseStatusException {
     PCPartListing listing = new PCPartListing();
     PCPartCondition condition = PCPartCondition.valueOf(conditionString);
     SecurityContext context = SecurityContextHolder.getContext();
@@ -78,7 +79,23 @@ public class ListingController {
   }
 
   @PostMapping(path = "/buy")
-  public @ResponseBody String buyListing(@RequestParam Long listingId, @RequestParam int quantity) {
+  public @ResponseBody String buyListing(@RequestParam Long listingId, @RequestParam int quantity)
+      throws ResponseStatusException {
+    PCPartListing listing;
+    Optional<PCPartListing> optionalListing = listingRepository.findById(listingId);
+
+    if (optionalListing.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Listing does not exist.");
+    }
+    listing = optionalListing.get();
+
+    if (listing.getQuantity() < quantity) {
+      throw new ResponseStatusException(
+          HttpStatus.BAD_REQUEST, "Quantity larger than available quantity.");
+    }
+
+    listing.setQuantity(listing.getQuantity() - quantity);
+    listingRepository.save(listing);
     return "Success";
   }
 }
