@@ -43,7 +43,7 @@ public class SecurityConfig {
                   .hasAuthority("ADMIN")
 
                   // Listing resources
-                  .requestMatchers("/listing/all")
+                  .requestMatchers("/listing/all", "/listing/all/category")
                   .permitAll()
                   .requestMatchers("/listing/create", "/listing/buy")
                   .authenticated();

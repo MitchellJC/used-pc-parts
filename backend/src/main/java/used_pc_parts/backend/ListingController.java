@@ -1,5 +1,6 @@
 package used_pc_parts.backend;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class ListingController {
   @GetMapping(path = "/all")
   public @ResponseBody Iterable<PCPartListing> getAllListings() {
     return listingRepository.findAll();
+  }
+
+  @GetMapping(path = "/all/category")
+  public @ResponseBody Iterable<PCPartListing> allFromCategory(@RequestParam String category) {
+    List<PCPart> categoryParts = partRepository.findByCategory(PCPartCategory.valueOf(category));
+    return listingRepository.findByPcPartInOrderByCreationDateDesc(categoryParts);
   }
 
   @GetMapping(path = "/create")
