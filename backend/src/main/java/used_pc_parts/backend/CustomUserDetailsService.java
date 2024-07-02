@@ -15,6 +15,8 @@ public class CustomUserDetailsService implements UserDetailsService {
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    // TODO Remove admin from here in prod
     if (Objects.equals(username, "admin")) {
       return org.springframework.security.core.userdetails.User.builder()
           .username("admin")
@@ -23,11 +25,13 @@ public class CustomUserDetailsService implements UserDetailsService {
           .build();
     }
 
+    // Find user
     Optional<User> user = userRepository.findByEmail(username);
     if (user.isEmpty()) {
       throw new UsernameNotFoundException("Username not found.");
     }
 
+    // Construct and return user details.
     return org.springframework.security.core.userdetails.User.builder()
         .username(user.get().getEmail())
         .password(user.get().getHashedPassword())
