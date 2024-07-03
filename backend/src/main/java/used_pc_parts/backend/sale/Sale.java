@@ -1,4 +1,4 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.sale;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

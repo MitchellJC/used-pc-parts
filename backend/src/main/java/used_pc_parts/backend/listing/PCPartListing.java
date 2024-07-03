@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import used_pc_parts.backend.pc_part.PCPart;
-import used_pc_parts.backend.Sale;
+import used_pc_parts.backend.sale.Sale;
 import used_pc_parts.backend.user.User;
 
 import java.util.Collection;

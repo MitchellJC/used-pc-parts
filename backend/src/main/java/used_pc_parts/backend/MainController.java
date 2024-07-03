@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Collection;
+import used_pc_parts.backend.sale.Sale;
+import used_pc_parts.backend.sale.SaleRepository;
 
 /** The main controller for the backend. */
 @Controller

@@ -11,11 +11,12 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.Authentication;
-import used_pc_parts.backend.*;
 import used_pc_parts.backend.pc_part.PCPart;
 import used_pc_parts.backend.pc_part.PCPartCategory;
 import used_pc_parts.backend.pc_part.PCPartCondition;
 import used_pc_parts.backend.pc_part.PCPartRepository;
+import used_pc_parts.backend.sale.Sale;
+import used_pc_parts.backend.sale.SaleRepository;
 import used_pc_parts.backend.user.User;
 import used_pc_parts.backend.user.UserRepository;
 
