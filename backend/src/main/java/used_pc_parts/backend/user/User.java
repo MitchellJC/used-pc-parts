@@ -2,8 +2,10 @@ package used_pc_parts.backend.user;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import used_pc_parts.backend.listing.PCPartListing;
+import used_pc_parts.backend.sale.Sale;
 
 @Entity
 public class User {
@@ -22,6 +24,10 @@ public class User {
   @OneToMany(mappedBy = "seller")
   private List<PCPartListing> listings;
 
+  @OneToMany(mappedBy = "buyer")
+  @JsonIgnore
+  private List<Sale> purchases;
+
   protected User() {}
 
   public User(String email, String firstName, String lastName) {
@@ -30,6 +36,7 @@ public class User {
     this.lastName = lastName;
   }
 
+  // Getters
   public Long getId() {
     return this.id;
   }
@@ -50,6 +57,11 @@ public class User {
     return hashedPassword;
   }
 
+  public List<Sale> getPurchases() {
+    return purchases;
+  }
+
+  // Setters
   public void setEmail(String email) {
     this.email = email;
   }

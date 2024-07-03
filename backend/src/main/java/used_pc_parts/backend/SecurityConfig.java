@@ -49,6 +49,8 @@ public class SecurityConfig {
                   .authenticated()
 
                   // Sale resources
+                  .requestMatchers("/sale/purchases")
+                  .authenticated()
                   .requestMatchers("/sale/all")
                   .hasAuthority("ADMIN");
             })
