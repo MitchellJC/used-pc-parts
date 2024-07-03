@@ -3,7 +3,7 @@ package used_pc_parts.backend.user;
 import java.util.List;
 
 import jakarta.persistence.*;
-import used_pc_parts.backend.PCPartListing;
+import used_pc_parts.backend.listing.PCPartListing;
 
 @Entity
 public class User {

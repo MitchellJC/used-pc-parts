@@ -1,6 +1,7 @@
 package used_pc_parts.backend;
 
 import jakarta.persistence.*;
+import used_pc_parts.backend.listing.PCPartListing;
 
 /** Represents a PCPart that can be bought and sold. */
 @Entity
@@ -22,7 +23,7 @@ public class PCPart {
   @OneToOne(mappedBy = "pcPart", cascade = CascadeType.ALL)
   private PCPartListing listing;
 
-  protected PCPart() {}
+  public PCPart() {}
 
   public PCPart(
       String name, String description, PCPartCategory category, PCPartCondition partCondition) {

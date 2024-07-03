@@ -1,6 +1,7 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.listing;
 
 import org.springframework.data.repository.CrudRepository;
+import used_pc_parts.backend.PCPart;
 
 import java.util.List;
 

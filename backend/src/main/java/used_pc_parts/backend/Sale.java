@@ -2,6 +2,7 @@ package used_pc_parts.backend;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import used_pc_parts.backend.listing.PCPartListing;
 import used_pc_parts.backend.user.User;
 
 import java.util.Date;

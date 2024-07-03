@@ -1,4 +1,4 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.listing;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.Authentication;
+import used_pc_parts.backend.*;
 import used_pc_parts.backend.user.User;
 import used_pc_parts.backend.user.UserRepository;
 
