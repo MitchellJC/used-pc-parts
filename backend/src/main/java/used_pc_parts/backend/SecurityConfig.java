@@ -49,7 +49,7 @@ public class SecurityConfig {
                   .authenticated()
 
                   // Sale resources
-                  .requestMatchers("/sale/purchases")
+                  .requestMatchers("/sale/purchases", "/sale/sold")
                   .authenticated()
                   .requestMatchers("/sale/all")
                   .hasAuthority("ADMIN");
