@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -31,6 +32,9 @@ public class PCPartListing {
 
   private int quantity;
   private float price;
+
+  @OneToMany(mappedBy = "listing")
+  private Collection<Sale> sales;
 
   protected PCPartListing() {}
 
