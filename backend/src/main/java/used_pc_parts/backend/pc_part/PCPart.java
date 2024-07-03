@@ -1,4 +1,4 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.pc_part;
 
 import jakarta.persistence.*;
 import used_pc_parts.backend.listing.PCPartListing;
