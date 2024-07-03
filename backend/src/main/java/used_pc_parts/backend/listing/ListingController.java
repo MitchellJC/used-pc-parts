@@ -1,6 +1,7 @@
 package used_pc_parts.backend.listing;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,13 +126,14 @@ public class ListingController {
       throws ResponseStatusException {
     PCPartListing listing;
     Sale sale;
+
     Optional<PCPartListing> optionalListing = listingRepository.findById(listingId);
     SecurityContext context = SecurityContextHolder.getContext();
     Authentication authentication = context.getAuthentication();
-    Optional<User> seller = userRepository.findByEmail(authentication.getName());
+    Optional<User> buyer = userRepository.findByEmail(authentication.getName());
 
-    // Check seller exists
-    if (seller.isEmpty()) {
+    // Check buyer exists
+    if (buyer.isEmpty()) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist.");
     }
 
@@ -141,18 +143,23 @@ public class ListingController {
     }
     listing = optionalListing.get();
 
+    // Check seller is not buyer
+    if (Objects.equals(listing.getSeller().getId(), buyer.get().getId())) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Buyer cannot be seller.");
+    }
+
     // Check quantity is available
     if (listing.getQuantity() < quantity) {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "Quantity larger than available quantity.");
     }
 
-    // Create sale
-    sale = new Sale(listing, seller.get(), quantity, listing.getPrice());
+    // Create sale & update listing
+    sale = new Sale(listing, buyer.get(), quantity, listing.getPrice());
     saleRepository.save(sale);
-
     listing.setQuantity(listing.getQuantity() - quantity);
     listingRepository.save(listing);
+
     return "Success";
   }
 }
