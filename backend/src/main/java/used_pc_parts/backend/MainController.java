@@ -6,22 +6,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collection;
+
 /** The main controller for the backend. */
 @Controller
 public class MainController {
-  @Autowired private UserRepository userRepository;
-  @Autowired private ListingRepository listingRepository;
+  @Autowired private SaleRepository saleRepository;
 
   @RequestMapping(path = "/greeting")
   public @ResponseBody String greeting() {
     return "Hello world!";
   }
 
-  /**
-   * @return JSON or XML of all listing data.
-   */
-  @GetMapping(path = "/allListings")
-  public @ResponseBody Iterable<PCPartListing> getAllListings() {
-    return listingRepository.findAll();
+  @GetMapping(path = "/sale/all")
+  public @ResponseBody Iterable<Sale> getAllSales() {
+    return saleRepository.findAll();
   }
 }

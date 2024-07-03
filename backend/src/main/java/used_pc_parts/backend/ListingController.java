@@ -18,6 +18,7 @@ public class ListingController {
   @Autowired private UserRepository userRepository;
   @Autowired private ListingRepository listingRepository;
   @Autowired private PCPartRepository partRepository;
+  @Autowired private SaleRepository saleRepository;
 
   /**
    * @return JSON or XML of all listing data.
@@ -115,7 +116,16 @@ public class ListingController {
   public @ResponseBody String buyListing(@RequestParam Long listingId, @RequestParam int quantity)
       throws ResponseStatusException {
     PCPartListing listing;
+    Sale sale;
     Optional<PCPartListing> optionalListing = listingRepository.findById(listingId);
+    SecurityContext context = SecurityContextHolder.getContext();
+    Authentication authentication = context.getAuthentication();
+    Optional<User> seller = userRepository.findByEmail(authentication.getName());
+
+    // Check seller exists
+    if (seller.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User does not exist.");
+    }
 
     // Check listing exists
     if (optionalListing.isEmpty()) {
@@ -128,6 +138,10 @@ public class ListingController {
       throw new ResponseStatusException(
           HttpStatus.BAD_REQUEST, "Quantity larger than available quantity.");
     }
+
+    // Create sale
+    sale = new Sale(listing, seller.get(), quantity, listing.getPrice());
+    saleRepository.save(sale);
 
     listing.setQuantity(listing.getQuantity() - quantity);
     listingRepository.save(listing);

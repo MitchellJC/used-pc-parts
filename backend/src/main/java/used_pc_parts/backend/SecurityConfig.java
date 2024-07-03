@@ -46,7 +46,11 @@ public class SecurityConfig {
                   .requestMatchers("/listing/all", "/listing/all/category")
                   .permitAll()
                   .requestMatchers("/listing/create", "/listing/buy")
-                  .authenticated();
+                  .authenticated()
+
+                  // Sale resources
+                  .requestMatchers("/sale/all")
+                  .hasAuthority("ADMIN");
             })
         .formLogin((form) -> form.loginPage("/user/login").permitAll())
         .logout(LogoutConfigurer::permitAll);

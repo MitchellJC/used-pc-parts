@@ -14,6 +14,8 @@ public class Sale {
 
   @ManyToOne private PCPartListing listing;
 
+  @ManyToOne private User buyer;
+
   private int quantityPurchased;
   private float purchasePrice;
 
@@ -23,4 +25,35 @@ public class Sale {
   private Date creationDate;
 
   protected Sale() {}
+
+  public Sale(PCPartListing listing, User buyer, int quantityPurchased, float purchasePrice) {
+    this.listing = listing;
+    this.buyer = buyer;
+    this.quantityPurchased = quantityPurchased;
+    this.purchasePrice = purchasePrice;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public PCPartListing getListing() {
+    return listing;
+  }
+
+  public User getBuyer() {
+    return buyer;
+  }
+
+  public int getQuantityPurchased() {
+    return quantityPurchased;
+  }
+
+  public float getPurchasePrice() {
+    return purchasePrice;
+  }
+
+  public Date getCreationDate() {
+    return creationDate;
+  }
 }
