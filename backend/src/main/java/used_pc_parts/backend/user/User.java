@@ -1,8 +1,9 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.user;
 
 import java.util.List;
 
 import jakarta.persistence.*;
+import used_pc_parts.backend.PCPartListing;
 
 @Entity
 public class User {

@@ -3,6 +3,7 @@ package used_pc_parts.backend;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import used_pc_parts.backend.user.User;
 
 import java.util.Collection;
 import java.util.Date;

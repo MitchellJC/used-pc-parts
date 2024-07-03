@@ -1,4 +1,4 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.user;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;

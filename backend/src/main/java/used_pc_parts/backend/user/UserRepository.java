@@ -1,4 +1,4 @@
-package used_pc_parts.backend;
+package used_pc_parts.backend.user;
 
 import java.util.Optional;
 import java.util.List;
