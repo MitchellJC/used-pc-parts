@@ -1,6 +1,14 @@
 # Backend
 
-## Simulating user registration with curl.
+## Running the application for testing
+
+To start up the server.
+
+```bash
+./mvnw spring-boot:run
+```
+
+## Simulating user registration with curl
 
 To simulate visiting registration page for the first time.
 
