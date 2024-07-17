@@ -1,9 +1,66 @@
 import Image from "next/image";
 
+enum Page {
+  LOGIN,
+}
+
+function LoginPage() {
+  return (
+    <div className="mt-10 mx-auto p-3 min-w-96 bg-slate-800">
+      <h2 className=" text-center">Please Login</h2>
+      <LoginForm></LoginForm>
+    </div>
+  );
+}
+
+async function LoginForm() {
+  const loginLabelClass: string = "mt-2 mw-100 min-w-96";
+  const loginInputClass: string  = "text-black min-w-96";
+  await fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+  return (
+    <form className="flex flex-col">
+      <label htmlFor="email" className={loginLabelClass}>Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        className={loginInputClass}
+      ></input>
+      <label htmlFor="password" className={loginLabelClass}>Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        className={loginInputClass}
+      ></input>
+      <input
+        type="submit"
+        value="Login"
+        className="border-solid border-white border-2 mt-3 bg-slate-900 focus:bg-slate-950 cursor-pointer"
+      ></input>
+    </form>
+  );
+}
+
 export default function Home() {
+  const page = Page.LOGIN;
+  if (page == Page.LOGIN) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <LoginPage></LoginPage>
+      </div>
+    );
+  }
+}
+
+function Reference() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+        <LoginPage></LoginPage>
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
