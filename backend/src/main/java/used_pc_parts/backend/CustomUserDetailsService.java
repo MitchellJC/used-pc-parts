@@ -19,9 +19,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     // TODO Remove admin from here in prod
-    if (Objects.equals(username, "admin")) {
+    if (Objects.equals(username, "admin@email.com")) {
       return org.springframework.security.core.userdetails.User.builder()
-          .username("admin")
+          .username("admin@email.com")
           .password(encoder.encode("password"))
           .authorities("USER", "ADMIN")
           .build();
