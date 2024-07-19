@@ -1,9 +1,10 @@
 # Backend
+## Installs
+- Using Liberica JDK 21.0.4 ([download page](https://bell-sw.com/pages/downloads/#jdk-21-lts))
 
 ## Running the application for testing
-
 To start up the server.
-
+Run the Docker Desktop app first and then run the following command.
 ```bash
 ./mvnw spring-boot:run
 ```
