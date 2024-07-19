@@ -9,7 +9,7 @@ function NavBar({
 }): JSX.Element {
   return (
     <div>
-      <header className="flex gap-2 bg-red-900 p-1">
+      <header className="flex gap-2 bg-gray-900 p-3">
         <button onClick={goHome}>Home</button>
         <button onClick={goLogin}>Login</button>
       </header>

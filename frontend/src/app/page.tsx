@@ -1,6 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
+import Head from "next/head";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
@@ -41,6 +42,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col space justify-between">
+      <Head>
+        <title>hello</title>
+      </Head>
       <NavBar
         goHome={() => setPage(Page.HOME)}
         goLogin={() => setPage(Page.LOGIN)}
