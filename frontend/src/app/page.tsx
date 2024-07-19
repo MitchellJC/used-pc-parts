@@ -36,7 +36,7 @@ function getPageContent(page: Page): JSX.Element {
 
 export default function App() {
   const [page, setPage]: [page: Page, setPage: CallableFunction] = useState(
-    Page.LOGIN
+    Page.HOME
   );
   const content: JSX.Element = getPageContent(page);
 

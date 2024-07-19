@@ -66,7 +66,7 @@ function LoginForm() {
       <input
         type="submit"
         value="Login"
-        className="border-solid border-white border-2 mt-3 bg-slate-900 focus:bg-slate-950 cursor-pointer"
+        className="border-solid border-white border-2 mt-3 bg-teal-800 focus:bg-teal-900 cursor-pointer"
       ></input>
     </form>
   );

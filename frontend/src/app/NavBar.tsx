@@ -9,7 +9,8 @@ function NavBar({
 }): JSX.Element {
   return (
     <div>
-      <header className="flex gap-2 bg-gray-900 p-3">
+      <header className="flex gap-2 bg-slate-900 p-3">
+        <span className="text-xl mr-3">UsedPCParts.com</span>
         <button onClick={goHome}>Home</button>
         <button onClick={goLogin}>Login</button>
       </header>
