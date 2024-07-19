@@ -1,3 +1,6 @@
+import placeholder from "../../public/placeholder.svg";
+import Image from "next/image";
+
 interface ListingData {
   id: number;
   name: string;
@@ -16,7 +19,12 @@ function ListingDisplay({
 }): JSX.Element {
   return (
     <div>
-      <image></image>
+      <Image
+        width={200}
+        height={200}
+        src={placeholder}
+        alt="Placeholder image"
+      ></Image>
       <span>{name}</span>
       <p>{description}</p>
       <span>{price}</span>
