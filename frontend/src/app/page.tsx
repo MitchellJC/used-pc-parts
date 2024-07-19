@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import LoginPage from "./LoginPage";
+import Footer from "./Footer";
 
 enum Page {
   HOME,
@@ -21,7 +22,7 @@ function getPageContent(page: Page): JSX.Element {
     return <Home></Home>;
   } else if (page.valueOf() === Page.LOGIN.valueOf()) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="flex flex-col">
         <LoginPage></LoginPage>
       </div>
     );
@@ -39,12 +40,13 @@ export default function App() {
   const content: JSX.Element = getPageContent(page);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col space justify-between">
       <NavBar
         goHome={() => setPage(Page.HOME)}
         goLogin={() => setPage(Page.LOGIN)}
       ></NavBar>
       {content}
+      <Footer></Footer>
     </div>
   );
 }
