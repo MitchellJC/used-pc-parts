@@ -20,6 +20,7 @@ function ListingDisplay({
   return (
     <div>
       <Image
+        priority
         width={200}
         height={200}
         src={placeholder}
