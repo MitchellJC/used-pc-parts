@@ -8,6 +8,7 @@ Run the Docker Desktop app first and then run the following command.
 ```bash
 ./mvnw spring-boot:run
 ```
+The app will then be available at [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
 
 ## Simulating user registration with curl
 

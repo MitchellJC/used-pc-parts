@@ -1,5 +1,14 @@
 import Home from "./Home";
 
-export default function Page() {
-  return <Home></Home>;
+const BACKEND_DOMAIN = "http://127.0.0.1:8080";
+
+async function getNewListings() {
+  return fetch(BACKEND_DOMAIN + "/listing/all", {
+    method: "GET",
+  }).then((response) => response.json());
+}
+
+export default async function Page(): Promise<JSX.Element> {
+  const newListings = await getNewListings();
+  return <Home newListings={newListings}></Home>;
 }

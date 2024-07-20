@@ -1,12 +1,6 @@
 import placeholder from "../../public/placeholder.svg";
 import Image from "next/image";
-
-interface ListingData {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-}
+import ListingData from "./ListingData";
 
 function ListingDisplay({
   name,
@@ -37,7 +31,7 @@ function DisplayCase({ listings }: { listings: ListingData[] }): JSX.Element {
   const listingItems: JSX.Element[] = listings.map((listing) => (
     <li key={listing.id}>
       <ListingDisplay
-        name={listing.name}
+        name={listing.pcPart.name}
         description={listing.description}
         price={listing.price}
       ></ListingDisplay>
