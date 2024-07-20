@@ -22,7 +22,7 @@ function ListingDisplay({
       ></Image>
       <span>{name}</span>
       <p>{description}</p>
-      <span>{price}</span>
+      <span>${price}</span>
     </div>
   );
 }
