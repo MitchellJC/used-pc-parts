@@ -3,7 +3,7 @@ import Home from "./Home";
 const BACKEND_DOMAIN = "http://127.0.0.1:8080";
 
 async function getNewListings() {
-  return fetch(BACKEND_DOMAIN + "/listing/all", {
+  return fetch(BACKEND_DOMAIN + "/listing/new", {
     method: "GET",
   }).then((response) => response.json());
 }
