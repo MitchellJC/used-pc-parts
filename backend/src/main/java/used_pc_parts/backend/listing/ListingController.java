@@ -34,7 +34,15 @@ public class ListingController {
    */
   @GetMapping(path = "/all")
   public @ResponseBody Iterable<PCPartListing> getAllListings() {
-    return listingRepository.findAll();
+    return listingRepository.findAllByOrderByCreationDateDesc();
+  }
+
+  /**
+   * @return JSON or XML of all new listing data with nonzero quantity.
+   */
+  @GetMapping(path = "/new")
+  public @ResponseBody Iterable<PCPartListing> getNewListings() {
+    return listingRepository.findAllByQuantityGreaterThanOrderByCreationDateDesc(0);
   }
 
   /**

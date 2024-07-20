@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ListingRepository extends CrudRepository<PCPartListing, Long> {
   List<PCPartListing> findAllBySeller(User seller);
-
+  List<PCPartListing> findAllByOrderByCreationDateDesc();
+  List<PCPartListing> findAllByQuantityGreaterThanOrderByCreationDateDesc(int quantity);
   List<PCPartListing> findByPcPartInOrderByCreationDateDesc(List<PCPart> parts);
 }

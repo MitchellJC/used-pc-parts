@@ -46,7 +46,7 @@ public class SecurityConfig {
                   .hasAuthority("ADMIN")
 
                   // Listing resources
-                  .requestMatchers("/listing/all", "/listing/all/category")
+                  .requestMatchers("/listing/all","/listing/new", "/listing/all/category")
                   .permitAll()
                   .requestMatchers("/listing/create", "/listing/buy")
                   .authenticated()
