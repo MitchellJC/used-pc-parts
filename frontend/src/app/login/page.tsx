@@ -1,9 +1,20 @@
 import LoginPage from "./LoginPage";
+import { BACKEND_DOMAIN } from "../config";
+
+async function submitLogin(username: string, password: string) {
+  "use server";
+  console.log("submitLogin");
+  const response = await fetch(BACKEND_DOMAIN + "/user/login", {
+    method: "POST",
+    body: JSON.stringify({ username: username, password: password }),
+  });
+  console.log(await response);
+}
 
 export default async function Page() {
   return (
     <div className="flex flex-col">
-      <LoginPage></LoginPage>
+      <LoginPage submitLogin={submitLogin}></LoginPage>
     </div>
   );
 }

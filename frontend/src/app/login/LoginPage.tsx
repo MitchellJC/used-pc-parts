@@ -1,13 +1,13 @@
-function LoginPage(): JSX.Element {
+function LoginPage({ submitLogin }): JSX.Element {
   return (
     <div className="mt-10 mx-auto p-3 w-96 max-w-full bg-slate-800">
       <h2 className=" text-center">Please Login</h2>
-      <LoginForm></LoginForm>
+      <LoginForm submitLogin={submitLogin}></LoginForm>
     </div>
   );
 }
 
-function LoginForm() {
+function LoginForm({ submitLogin }) {
   let csrfCookie: string;
   const loginLabelClass: string = "mt-2 w-prose max-w-full w-prose";
   const loginInputClass: string = "text-black w-prose max-w-full p-1";
@@ -44,7 +44,7 @@ function LoginForm() {
   // }
 
   return (
-    <form className="flex flex-col">
+    <form className="flex flex-col" action={submitLogin}>
       <label htmlFor="email" className={loginLabelClass}>
         Email:
       </label>
