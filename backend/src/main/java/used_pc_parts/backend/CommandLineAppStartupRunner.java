@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import used_pc_parts.backend.user.User;
 import used_pc_parts.backend.user.UserRepository;
 
+import java.util.Optional;
+
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
   @Autowired UserRepository userRepository;
@@ -15,6 +17,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
   public void run(String... args) throws Exception {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     User admin = new User("admin@email.com");
+    Optional<User> possibleAdmin = userRepository.findByEmail("admin@email.com");
+
+    // Check if admin exists first
+    if (possibleAdmin.isPresent()) {
+      return;
+    }
+
+    // Insert admin
     admin.setFirstName("admin");
     admin.setLastName("admin");
     // TODO Change this password for prod
