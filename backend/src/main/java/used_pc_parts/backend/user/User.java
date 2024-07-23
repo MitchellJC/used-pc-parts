@@ -21,6 +21,8 @@ public class User {
   private String lastName;
   private String hashedPassword;
 
+  private String role;
+
   @OneToMany(mappedBy = "seller")
   private List<PCPartListing> listings;
 
@@ -30,10 +32,8 @@ public class User {
 
   protected User() {}
 
-  public User(String email, String firstName, String lastName) {
+  public User(String email) {
     this.email = email;
-    this.firstName = firstName;
-    this.lastName = lastName;
   }
 
   // Getters
@@ -51,6 +51,10 @@ public class User {
 
   public String getLastName() {
     return this.lastName;
+  }
+
+  public String getRole() {
+    return role;
   }
 
   public String getHashedPassword() {
@@ -72,6 +76,10 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 
   public void setHashedPassword(String hashedPassword) {
