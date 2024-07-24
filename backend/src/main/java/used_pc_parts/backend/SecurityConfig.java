@@ -42,11 +42,13 @@ public class SecurityConfig {
                   // User resources
                   .requestMatchers("/user/register", "/user/logout")
                   .permitAll()
+                  .requestMatchers("/user/getFirstName")
+                  .authenticated()
                   .requestMatchers("/user/all", "/user/remove")
                   .hasAuthority("ADMIN")
 
                   // Listing resources
-                  .requestMatchers("/listing/all","/listing/new", "/listing/all/category")
+                  .requestMatchers("/listing/all", "/listing/new", "/listing/all/category")
                   .permitAll()
                   .requestMatchers("/listing/create", "/listing/buy")
                   .authenticated()
