@@ -1,4 +1,15 @@
-function NavBar(): JSX.Element {
+interface Props {
+  firstName?: string;
+}
+
+function NavBar({ firstName }: Props): JSX.Element {
+  let greeting: JSX.Element;
+
+  if (typeof firstName !== "undefined") {
+    greeting = <span>Hi, {firstName}</span>;
+  } else {
+    greeting = <span></span>;
+  }
   return (
     <div>
       <header className="flex gap-2 bg-slate-900 p-3">
@@ -9,6 +20,7 @@ function NavBar(): JSX.Element {
         <a href="/login" className="my-auto">
           Login
         </a>
+        {greeting}
       </header>
     </div>
   );

@@ -1,6 +1,8 @@
 import LoginPage from "./LoginPage";
 import { BACKEND_DOMAIN } from "../config";
 
+async function getCsrf() {}
+
 async function submitLogin(username: string, password: string) {
   "use server";
   console.log("submitLogin");
@@ -8,7 +10,7 @@ async function submitLogin(username: string, password: string) {
     method: "POST",
     body: JSON.stringify({ username: username, password: password }),
   });
-  console.log(await response);
+  console.log(response);
 }
 
 export default async function Page() {
